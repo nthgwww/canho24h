@@ -14,10 +14,10 @@ const Header = () => {
     // eslint-disable-next-line
   }, []);
 
-  const goRegister = useCallback(() => {
-    navigate(path.REGISTER);
-    // eslint-disable-next-line
-  }, []);
+  // const goRegister = useCallback(() => {
+  //   navigate(path.REGISTER);
+  //   // eslint-disable-next-line
+  // }, []);
 
   return (
     <div className="w-full ml-409 bg-slate-900">
