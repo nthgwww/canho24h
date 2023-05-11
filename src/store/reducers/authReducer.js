@@ -4,6 +4,7 @@ const initState = {
   isLoggedIn: false,
   token: null,
   msg: "",
+  update: false
 };
 
 const authReducer = (state = initState, action) => {
@@ -14,7 +15,8 @@ const authReducer = (state = initState, action) => {
         ...state,
         isLoggedIn: true,
         token: action.data,
-        msg:''
+        msg:'',
+        update:false
       };
 
     case actionTypes.REGISTER_FAIL:
@@ -23,7 +25,8 @@ const authReducer = (state = initState, action) => {
         ...state,
         isLoggedIn: false,
         msg: action.data,
-        token: null
+        token: null,
+        update:!state.update
       };
       case actionTypes.LOGOUT:
         return {

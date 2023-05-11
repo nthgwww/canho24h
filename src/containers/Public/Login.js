@@ -4,12 +4,13 @@ import { Button, FormInput } from "../../components";
 import { useNavigate, useLocation } from "react-router-dom";
 import * as actions from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import Swal from "sweetalert2"
 
 const Login = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const { isLoggedIn } = useSelector(state => state.auth)
+  const { isLoggedIn, msg, update } = useSelector(state => state.auth)
   const [isRegister, setIsRegister] = useState(location.state?.flag);
   const [invalidFields, setInvalidFields] = useState([]);
   const [payload, setPayload] = useState({
@@ -25,6 +26,10 @@ const Login = () => {
   useEffect(()=>{
     isLoggedIn && navigate('/')
   },[isLoggedIn])
+
+  useEffect(()=>{
+    msg && Swal.fire('Oops !',msg, 'error')
+  },[msg, update])
 
   const handleSubmit = async () => {
     // console.log(payload)
@@ -106,20 +111,21 @@ const Login = () => {
             label={"HỌ TÊN"}
             value={payload.name}
             setValue={setPayload}
-            type={"name"}
+            keyPayload={"name"}
           />
         )}
         <FormInput setInvalidFields={setInvalidFields} invalidFields= {invalidFields}
           label={"SỐ ĐIỆN THOẠI"}
           value={payload.phone}
           setValue={setPayload}
-          type={"phone"}
+          keyPayload={"phone"}
         />
         <FormInput setInvalidFields={setInvalidFields} invalidFields= {invalidFields}
           label={"MẬT KHẨU"}
           value={payload.password}
           setValue={setPayload}
-          type={"password"}
+          keyPayload={"password"}
+          type='password'
         />
         <Button
           fullWidth
