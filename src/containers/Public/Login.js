@@ -22,9 +22,10 @@ const Login = () => {
   useEffect(() => {
     setIsRegister(location.state?.flag);
   }, [location.state?.flag]);
-
+  
   useEffect(()=>{
     isLoggedIn && navigate('/')
+    // eslint-disable-next-line 
   },[isLoggedIn])
 
   useEffect(()=>{
