@@ -12,7 +12,8 @@ module.exports = {
         secondary2:'rgb(252 211 77)'
       },
       maxWidth: {
-        '600' : '600px'
+        '600': '600px',
+        '1100': '1100px'
       },
       cursor:{
         pointer:'pointer'
