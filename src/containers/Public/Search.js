@@ -6,7 +6,7 @@ const { GrNext, GrFormLocation, FaMoneyBillWave, RiCrop2Fill, BsHouseHeartFill, 
 
 const Search = () => {
   return (
-    <div className=" p-[10px] bg-secondary2 rounded-lg flex-col lg:flex-row flex items-center justify-around gap-2">
+    <div className=" p-[10px] w-3/5 my-3 bg-secondary2 rounded-lg flex-col lg:flex-row flex items-center justify-around gap-2 mt-2">
       <SearchItem IconBefore={<BsHouseHeartFill />} IconAfter={<FiDelete />} fontWeight text="Mặt bằng, căn hộ" />
       <SearchItem IconBefore={<GrFormLocation />} IconAfter={<GrNext />} text="Toàn quốc" />
       <SearchItem IconBefore={<FaMoneyBillWave/>} IconAfter={<GrNext />} text="Chọn giá" />
