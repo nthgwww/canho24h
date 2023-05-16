@@ -4,6 +4,7 @@ import { combineReducers } from "redux";
 // import localStorage from "redux-persist/es/storage";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import { persistReducer } from "redux-persist";
+import postReducer from "./postReducer";
 import storage from "redux-persist/es/storage";
 
 
@@ -20,7 +21,8 @@ const authConfig = {
 
 const rootReducer = combineReducers({
     auth: persistReducer(authConfig, authReducer),
-    user: userReducer
+    user: userReducer,
+    post:postReducer
 })
 
 export default rootReducer
