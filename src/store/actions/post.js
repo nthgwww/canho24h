@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes';
-import { apiGetPosts } from '../../services/post';
+import { apiGetNewPosts, apiGetPosts, apiGetPostsLimit } from '../../services/post';
 
 export const getPosts = (payload) => async (dispatch) => { 
     try {
@@ -13,7 +13,7 @@ export const getPosts = (payload) => async (dispatch) => {
         }
         else{
             dispatch({
-                type:actionTypes.REGISTER_FAIL,
+                type:actionTypes.GET_POSTS,
                 data:response.data.msg
             })
         }
@@ -22,6 +22,57 @@ export const getPosts = (payload) => async (dispatch) => {
         dispatch({
             type:actionTypes.GET_POSTS,
             posts:null
+        })
+    }
+}
+
+export const getPostsLimit = (query) => async (dispatch) => {
+    try {
+        const response = await apiGetPostsLimit(query)
+        // console.log(response)
+        if (response?.data.err === 0){
+            dispatch({
+                type:actionTypes.GET_POSTS_LIMIT,
+                posts:response.data.response?.rows,
+                count:response.data.response?.count
+            })
+        }
+        else{
+            dispatch({
+                type:actionTypes.GET_POSTS_LIMIT,
+                data:response.data.msg
+            })
+        }
+
+    } catch (error) {
+        dispatch({
+            type:actionTypes.GET_POSTS_LIMIT,
+            posts:null
+        })
+    }
+}
+
+export const getNewPosts = () => async (dispatch) => {
+    try {
+        const response = await apiGetNewPosts()
+        if (response?.data.err === 0){
+            dispatch({
+                type:actionTypes.GET_NEW_POST,
+                newPosts:response.data.response,
+            })
+        }
+        else{
+            dispatch({
+                type:actionTypes.GET_NEW_POST,
+                msg:response.data.msg,
+                newPosts: null
+            })
+        }
+
+    } catch (error) {
+        dispatch({
+            type:actionTypes.GET_NEW_POST,
+            newPosts:null
         })
     }
 }

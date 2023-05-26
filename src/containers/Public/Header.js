@@ -1,8 +1,8 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import logo from "../../assets/logo.png";
 import { Button } from "../../components";
 import icons from "../../utills/icons";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, useSearchParams } from "react-router-dom";
 import { path } from "../../utills/constant";
 import { useSelector, useDispatch } from "react-redux";
 import * as actions from "../../store/actions";
@@ -12,11 +12,16 @@ const { AiOutlinePlusCircle } = icons;
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const headerRef = useRef();
+  const [searchParams] = useSearchParams();
   const { isLoggedIn } = useSelector((state) => state.auth);
   const goLogin = useCallback((flag) => {
     navigate(path.LOGIN, { state: { flag } });
     // eslint-disable-next-line
   }, []);
+  useEffect(() => {
+    headerRef.current.scrollIntoView({behavior : 'smooth', block: 'start'})
+  },[searchParams.get('page')])
 
   // const goRegister = useCallback(() => {
   //   navigate(path.REGISTER);
@@ -24,7 +29,7 @@ const Header = () => {
   // }, []);
 
   return (
-    <div className="w-full ml-409 bg-slate-900">
+    <div ref={headerRef} className="w-full ml-409 bg-slate-900">
       <div className="max-w-1100 mx-auto flex items-center justify-between bg-slate-900">
         <Link to={"/"}>
           <img

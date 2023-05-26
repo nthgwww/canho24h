@@ -1,15 +1,31 @@
-import { useEffect } from "react";
+import { useEffect} from "react";
 import React from "react";
 import { Button, Item } from "../../components";
-import { getPosts } from "../../store/actions/post";
+import { 
+  //  getPosts,
+   getPostsLimit } from "../../store/actions/post";
 import { useDispatch, useSelector } from "react-redux";
+import  { useSearchParams } from 'react-router-dom';
 
-const List = () => {
+const List = ({categoryCode}) => {
+  console.log(categoryCode)
   const dispatch = useDispatch();
+  const [searchParams] = useSearchParams();
   const { posts } = useSelector((state) => state.post);
+
   useEffect(() => {
-    dispatch(getPosts());
-  }, []);
+    let params = []
+    for(let entry of searchParams.entries()){
+      params.push(entry)
+    }
+    let searchParamsObject = {}
+    params?.map(i=> {searchParamsObject =  { ...searchParamsObject, [i[0]] : i[1]}})
+    if(categoryCode) searchParamsObject.categoryCode = categoryCode    
+    console.log(searchParamsObject)
+    dispatch(getPostsLimit(searchParamsObject));
+    // return searchParamsObject
+    // let page = searchParams.get('page')
+  }, [searchParams, categoryCode]);
   // console.log(posts)
   return (
     <div className="w-full p-2 bg-white shadow-md rounded-md px-6">
@@ -35,6 +51,7 @@ const List = () => {
                 star={+item.star}
                 title={item?.title}
                 user={item?.user}
+                id = {item?.id}
               />
             );
           })}

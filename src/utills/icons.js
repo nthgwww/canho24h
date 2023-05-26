@@ -1,11 +1,11 @@
 import { AiOutlinePlusCircle, AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
-import { GrNext, GrFormLocation } from "react-icons/gr"
+import { GrNext, GrFormLocation, GrFormNextLink, GrFormPreviousLink } from "react-icons/gr"
 import { FaMoneyBillWave } from 'react-icons/fa'
 import { RiCrop2Fill } from 'react-icons/ri'
 import { BsHouseHeartFill, BsFillBookmarkHeartFill } from 'react-icons/bs'
 import {FiDelete} from 'react-icons/fi'
 import {GiMagnifyingGlass} from 'react-icons/gi'
-import { MdStarRate } from 'react-icons/md'
+import { MdStarRate, MdOutlineNavigateNext } from 'react-icons/md'
 
 const icons = {
     AiOutlinePlusCircle,
@@ -19,7 +19,9 @@ const icons = {
     MdStarRate,
     AiOutlineHeart,
     AiFillHeart,
-    BsFillBookmarkHeartFill
+    BsFillBookmarkHeartFill,
+    GrFormNextLink,
+    GrFormPreviousLink, MdOutlineNavigateNext
 }
 
 export default icons
